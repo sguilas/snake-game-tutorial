@@ -6,5 +6,5 @@ I changed a few things but they were simple color changes or swapping out a png 
 
 just to make sure : THIS IS NOT MINE AND WAS USED TO LEARN
 
-The actual code is from Clear Code. https://www.youtube.com/watch?v=QFvqStqPCRU&t=4826s
+The actual code is from Clear Code. https://www.youtube.com/watch?v=QFvqStqPCRU&t
                                     github.com/clear-code-projects/Snake
