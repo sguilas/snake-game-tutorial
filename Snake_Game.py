@@ -1,18 +1,25 @@
+import secrets
+
 import pygame
 import sys
 import random
 from pygame.math import Vector2 # Use Vectors to find relation between each rectangle drawn on screen
 
 
+
 class FRUIT:
     def __init__(self): # constructor to create fruit object
         self.randomize()
 
-    def draw_fruit(self): # draws the fruit object
+    def draw_apple(self,mod): # draws the fruit object
         fruit_rect=pygame.Rect(int(self.pos.x*cell_size), int(self.pos.y*cell_size), cell_size, cell_size) # creates a rectangle needs ( position x,y and lenght and width
-        screen.blit(apple,fruit_rect) # screen.blit draws the png over the rect
+        # screen.blit draws the png over the rect
+        screen.blit(apple,fruit_rect)
         ## Ran into problem where the png was too big. Had to resize using online tool and change cell size to fit
         #pygame.draw.rect(screen, (126,166,114), fruit_rect)  # draws the rectangle (where to draw, color, which rectangle)
+    def draw_orange(self,mod):
+        fruit_rect = pygame.Rect(int(self.pos.x * cell_size), int(self.pos.y * cell_size), cell_size, cell_size)
+        screen.blit(orange, fruit_rect)
     def randomize(self):
         self.x = random.randint(0, cell_number - 1)  # randomizes the position with each instance
         self.y = random.randint(0, cell_number - 1)  # after the fruit been eaten
@@ -117,8 +124,12 @@ class MAIN():  # This main class will contain everything about the game
         self.check_collision()
         self.check_fail()
     def draw_elements(self):
+        mod = len(self.snake.body) - 3 # added changing fruits
         self.draw_grass()
-        self.fruit.draw_fruit()  # see in game
+        if mod % 7 == 0:
+            self.fruit.draw_orange(mod)  # see in game
+        else:
+            self.fruit.draw_apple(mod)
         self.snake.draw_snake()  # see in game
 
     def check_collision(self):
@@ -155,7 +166,9 @@ cell_size=40
 cell_number=20
 screen = pygame.display.set_mode((cell_number*cell_size, cell_number*cell_size))
 clock = pygame.time.Clock()
-apple = pygame.image.load('Graphics/orange2.png').convert_alpha()  # loads an image from a folder. Only works if code is in same folder as graphics folder
+apple = pygame.image.load('Graphics/apple.png').convert_alpha()  # loads an image from a folder. Only works if code is in same folder as graphics folder
+orange = pygame.image.load('Graphics/orange2.png').convert_alpha()
+
 
 main_game=MAIN()
 
